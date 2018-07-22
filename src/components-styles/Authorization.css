@@ -1,0 +1,29 @@
+.Authorization input {
+    margin: 3% 0 3% 0;
+}
+
+.Authorization h2 {
+    text-align: center;
+    font-family: "Ubuntu Mono";
+}
+
+.Authorization label {
+    margin-bottom: 0;
+    margin-left: 1%;
+}
+
+.Authorization .checkbox{
+    display: flex;
+    align-items: center;
+}
+
+.Authorization form {
+    max-width: 330px;
+    margin: 0 auto;
+    margin-top: 20%;
+}
+.Authorization button {
+    max-width: 200px;
+    margin: 0 auto;
+    margin-top: 2%;
+}

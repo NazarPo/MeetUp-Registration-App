@@ -1,0 +1,14 @@
+.user-card p {
+    font-size: 14px;
+    text-align: justify;
+}
+
+.user-card {
+    background-color: lightskyblue;
+    width: 70%;
+    margin-top: 50px;
+}
+
+.not-active h6 {
+    color: black;
+}

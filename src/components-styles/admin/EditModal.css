@@ -1,0 +1,43 @@
+.create-meetup {
+    text-align: center;
+    margin: 7% 0 1% 0;
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.close {
+    font-size: 33px;
+}
+
+#date-adding div {
+    display: flex;
+    margin-bottom: 4%;
+}
+
+#date-adding div i {
+    cursor: pointer;
+    font-size: 23px;
+}
+
+.inputs-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 15%;
+}
+
+.inputs-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.inputs-header {
+    justify-content: space-between;
+}

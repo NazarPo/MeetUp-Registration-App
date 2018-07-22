@@ -1,0 +1,65 @@
+.user-profile {
+    margin-top: 5%;
+}
+
+.control-buttons .btn {
+    margin-left: 5%;
+}
+
+h4 {
+    text-align: center;
+    margin: 4% 0 3% 0;
+}
+
+.control-buttons .btn:first-child {
+    margin-right: 10%;
+}
+
+.control-buttons {
+    margin-top: 4%;
+}
+
+.custom-file span {
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.radio-form div input {
+    margin-right: 20px;
+    outline: none;
+}
+
+.radio-form div {
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.radio-form label {
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#profile i {
+    font-size: 25px;
+}
+
+#profile div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#profile h5 {
+    text-align: right;
+    font-size: 18px;
+}
+
+#profile h3 {
+    font-size: 25px;
+}

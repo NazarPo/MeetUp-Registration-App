@@ -1,0 +1,10 @@
+.meetups h2 {
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.meetups div {
+    margin: 3% 0 3% 0;
+    text-align: center;
+}

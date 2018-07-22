@@ -1,0 +1,12 @@
+#home-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#home-buttons button {
+    margin: 5px 0 5px 0;
+    width: 100px;
+}
+.meet-up-logo {
+    width: 100%;
+}
