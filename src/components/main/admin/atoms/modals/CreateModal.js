@@ -47,30 +47,30 @@ class CreateModal extends Component {
             .then(this.props.onRequestClose)
     };
 
-    inputEventHandler = (e, field) => {
+    inputEventHandler = (e) => {
         let temp = this.state.newMeetup;
-        temp[field] = e.target.value;
+        temp[e.target.name] = e.target.value;
         this.setState({ newMeetup: temp });
     };
 
     onTitleInputBlur = (e) => {
-        this.inputEventHandler(e, 'title');
+        this.inputEventHandler(e);
     };
 
     onImageInputBlur = (e) => {
-        this.inputEventHandler(e, 'image');
+        this.inputEventHandler(e);
     };
 
     onDescriptionInputBlur = (e) => {
-        this.inputEventHandler(e, 'description');
+        this.inputEventHandler(e);
     };
 
     onBlogLinkInputBlur = (e) => {
-        this.inputEventHandler(e, 'blogLink');
+        this.inputEventHandler(e);
     };
 
     onTimeInputBlurHandler = (e) => {
-        this.inputEventHandler(e, 'startTime');
+        this.inputEventHandler(e);
     };
 
     onChangeDateInputHandler = (e) => {

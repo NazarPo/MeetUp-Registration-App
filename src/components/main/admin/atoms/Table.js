@@ -21,7 +21,7 @@ class Table extends Component {
 
     render() {
         if(this.state.isRowClicked){
-            let link = `/admin/meet-up/${this.state.clickedRowId}`;
+            let link = `/admin/meetup/${this.state.clickedRowId}`;
             return <Redirect to={link} />
         }
         return (

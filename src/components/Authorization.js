@@ -1,41 +1,26 @@
 import React, { Component } from 'react';
-import '../components-styles/Authorization.css';
-import Auth from '../Auth/Auth.js';
-
-const auth = new Auth();
+import '../components-styles/Home.css';
 
 class Authorization extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
 
-    render() {
-        return (
-            <div className="Authorization">
+  login = () => {
+      this.props.auth.login();
+  };
 
-                <div className="container">
-                    <form className="form-signin">
-                        <h2 className="form-signin-heading">Please sign in</h2>
-                        <label htmlFor="inputLogin" className="sr-only">Email address</label>
-                        <input id="inputLogin" className="form-control" placeholder="Login" required=""
-                               autoFocus="" type="text" />
-                        <label htmlFor="inputPassword" className="sr-only">Password</label>
-                        <input id="inputPassword" className="form-control" placeholder="Password" required=""
-                                   type="password" />
-                        <div className="checkbox">
-                            <input id="remember_checkbox" value="remember-me" type="checkbox" />
-                            <label htmlFor="remember_checkbox">Remember me</label>
-                        </div>
-                        <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                    </form>
-                </div>
-
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="Home">
+          <img className="meet-up-logo" src="https://lh3.googleusercontent.com/KLdN3RBoeu11eVC7kwud5krPgDIRJK_MgNAVoVeT4lvyt9V1LpvLKWKo804uIdby95sUYdG7qg=w2048" alt=""/>
+          <div id="home-buttons">
+            <button type="button" className="btn btn-success" onClick={ this.login }>Sign in</button>
+            <button type="button" className="btn btn btn-info">Sign up</button>
+          </div>
+      </div>
+    );
+  }
 }
-
 export default Authorization;

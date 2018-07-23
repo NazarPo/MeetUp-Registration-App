@@ -6,7 +6,8 @@
 .user-card {
     background-color: lightskyblue;
     width: 70%;
-    margin-top: 50px;
+    margin-top: 3%;
+    margin-bottom: 5%;
 }
 
 .not-active h6 {

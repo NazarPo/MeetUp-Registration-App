@@ -13,7 +13,7 @@ class UserPage extends Component {
                 <div className='container'>
                     <Switch>
                         <Route exact path="/admin" component={Meetups} />
-                        <Route path="/admin/meet-up/:id" component={MeetupInfo} />
+                        <Route path="/admin/meetup/:id" component={MeetupInfo} />
                         <Route path="/admin/statistic" component={Statistic} />
                     </Switch>
                 </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from './atoms/Card';
 
-class AllMeetUpS extends Component {
+class Meetups extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +22,7 @@ class AllMeetUpS extends Component {
         return(
             <div className="row justify-content-center">
                 {
-                    [].map.call(this.state.meetupList, (meetup) => {
+                    this.state.meetupList.map((meetup) => {
                         if(!meetup.isActive)
                             return <Card
                                 key={meetup._id}
@@ -36,4 +36,4 @@ class AllMeetUpS extends Component {
     }
 }
 
-export default AllMeetUpS;
+export default Meetups;
