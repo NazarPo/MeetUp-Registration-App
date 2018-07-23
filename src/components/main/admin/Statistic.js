@@ -36,10 +36,10 @@ class Statistic extends Component {
                 type: 'line'
             },
             title: {
-                text: 'Monthly Average Temperature'
+                text: 'Статистика реєстрацій на Meetup'
             },
             subtitle: {
-                text: 'Source: WorldClimate.com'
+                text: 'Source: InterlinkMeetup.com'
             },
             plotOptions: {
                 line: {
@@ -61,7 +61,7 @@ class Statistic extends Component {
                 categories: this.getTitlesOfAll(this.state.meetups)
             },
             series: [{
-                data: [1]
+                data: [35, 25, 41]
             }]
         };
         return(

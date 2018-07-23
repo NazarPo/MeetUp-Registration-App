@@ -23,6 +23,7 @@
     "server": "node ./src/server/server.js"
   },
   "devDependencies": {
+    "auth0-js": "^9.7.2",
     "react-gravatar": "^2.6.3",
     "react-highcharts": "^16.0.2"
   }

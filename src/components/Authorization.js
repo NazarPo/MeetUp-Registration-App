@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import '../components-styles/Authorization.css';
+import Auth from '../Auth/Auth.js';
+
+const auth = new Auth();
 
 class Authorization extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            
         }
     }
 

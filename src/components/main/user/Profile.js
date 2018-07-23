@@ -3,7 +3,7 @@ import '../../../components-styles/user/Profile.css';
 import Gravatar from 'react-gravatar';
 
 class Profile extends Component {
-    USER_URL = 'http://localhost:4000/users/5b5234556db98627bca76102';
+    USER_URL = 'http://localhost:4000/users/5b50830b25dad540c2f90e8c';
 
     constructor(props){
         super(props);
