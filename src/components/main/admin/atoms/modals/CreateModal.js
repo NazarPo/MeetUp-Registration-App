@@ -47,11 +47,6 @@ class CreateModal extends Component {
             .then(this.props.onRequestClose)
     };
 
-    newMeetupValidation() {
-        //TODO: Implementation is here
-
-    };
-
     inputEventHandler = (e, field) => {
         let temp = this.state.newMeetup;
         temp[field] = e.target.value;
@@ -98,7 +93,14 @@ class CreateModal extends Component {
 
     removeDateInput = () => {
         let inputs = this.state.inputs.slice(0, -1);
-        this.setState({ inputs });
+        let newDates= this.state.newMeetup.dates.slice(0, -1);
+        this.setState({
+            inputs,
+            newMeetup: {
+                ...this.state.newMeetup,
+                dates: newDates
+            }
+        });
     };
 
     addDateToMeetup = (date, dates) => {
@@ -112,6 +114,7 @@ class CreateModal extends Component {
         });
         if(exists)
             dates[index] = date;
+        else dates.push(date);
     };
 
     createNewDate = (e) => {
