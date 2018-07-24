@@ -80,16 +80,16 @@ class EditModal extends Component {
         });
     };
 
-    handleTextInputChange = (e) => {
+    handleChange = ({target: {name, value}}) => {
         this.setState({
             meetup: {
                 ...this.state.meetup,
-                [e.target.name]: e.target.value
+                [name]: value
             }
         })
     };
 
-    onChangeDateInputHandler = (e) => {
+    onChangeDateHandler = (e) => {
         let temp = this.state.meetup;
         this.addDateToMeetup(this.createNewDate(e), temp.dates);
         this.setState({ meetup: temp });
@@ -157,7 +157,7 @@ class EditModal extends Component {
                                    className="form-control"
                                    id="meetup-title"
                                    name="title"
-                                   onChange={this.handleTextInputChange}
+                                   onChange={this.handleChange}
                             />
                         </div>
                         <div className="form-group">
@@ -167,7 +167,7 @@ class EditModal extends Component {
                                    className="form-control"
                                    id="meetup-image"
                                    name="image"
-                                   onChange={this.handleTextInputChange}
+                                   onChange={this.handleChange}
                             />
                         </div>
                         <div className="form-group">
@@ -177,7 +177,7 @@ class EditModal extends Component {
                                       id="meetup-description"
                                       rows="3"
                                       name="description"
-                                      onChange={this.handleTextInputChange}
+                                      onChange={this.handleChange}
                             />
                         </div>
 
@@ -197,7 +197,7 @@ class EditModal extends Component {
                                             <DateInput id={index}
                                                        key={index}
                                                        value={item.date}
-                                                       onChange={this.onChangeDateInputHandler}
+                                                       onChange={this.onChangeDateHandler}
                                             />
                                         </div>
                                     );
@@ -214,7 +214,7 @@ class EditModal extends Component {
                                        type="time"
                                        id="example-time-input"
                                        name="startTime"
-                                       onChange={this.handleTextInputChange}
+                                       onChange={this.handleChange}
                                 />
                             </div>
                         </div>
@@ -226,7 +226,7 @@ class EditModal extends Component {
                                    className="form-control"
                                    id="meetup-link"
                                    name="blogLink"
-                                   onChange={this.handleTextInputChange}
+                                   onChange={this.handleChange}
                             />
                         </div>
                         <div className="create-meetup">

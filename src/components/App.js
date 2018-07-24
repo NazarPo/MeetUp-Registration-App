@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Router, Route, Switch} from 'react-router-dom';
+import {Router, Route, Switch, Redirect} from 'react-router-dom';
 import UserPage from './main/user/UserPage';
 import AdminPage from './main/admin/AdminPage';
 import Callback from '../Callback/Callback';
@@ -20,7 +20,13 @@ class App extends Component {
             <div className="App">
                 <Router history={history}>
                     <Switch>
-                        <Route path="/admin" render={(props) => <AdminPage auth={auth} {...props} />}/>
+                        <Route path="/admin" render={(props) => (
+                            !auth.isAuthenticated() || !auth.userHasScopes(['write: messages']) ? (
+                                <Redirect to='/' />
+                            ) : (
+                                <AdminPage auth={auth} {...props} />
+                            )
+                        )}/>
                         <Route path="/callback" render={(props) => {
                             handleAuthentication(props);
                             return <Callback {...props} />

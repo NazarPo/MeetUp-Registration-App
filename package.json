@@ -3,20 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.7.1",
+    "auth0-js": "^9.7.2",
     "bootstrap": "^4.1.1",
     "express": "^4.16.3",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-gravatar": "^2.6.3",
+    "react-highcharts": "^16.0.2",
     "react-modal": "^3.5.1",
     "react-photo-gallery": "6.0.26",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
-    "auth0-js": "^9.7.2",
-    "react-gravatar": "^2.6.3",
-    "react-highcharts": "^16.0.2"
+    "react-scripts": "1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

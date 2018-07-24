@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './atoms/Card';
+import { notification } from 'antd';
 
 class News extends Component {
     constructor(props) {
@@ -19,9 +20,17 @@ class News extends Component {
             )
     }
 
+    openNotificationWithIcon = (type) => {
+        notification[type]({
+            message: 'Notification Title',
+            description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+        });
+    };
+
     registerBtnClickHandler = () => {
-        if(this.props.auth.isAuthenticated())
-            console.log('Click');
+        if(this.props.auth.isAuthenticated()) {
+            this.openNotificationWithIcon('success');
+        }
         else
             this.login();
     };
@@ -32,7 +41,6 @@ class News extends Component {
 
     render() {
         let _this = this;
-        const { isAuthenticated } = this.props.auth;
         return(
             <div className="row justify-content-center">
                 {
@@ -40,7 +48,7 @@ class News extends Component {
                         if(meetup.isActive)
                             return <Card
                                 key={meetup._id}
-                                meetup={meetup}isActive={meetup.isActive}
+                                meetup={meetup}
                                 onClick={_this.registerBtnClickHandler}
                             />
                     })
