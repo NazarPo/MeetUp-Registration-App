@@ -21,8 +21,8 @@ class App extends Component {
                 <Router history={history}>
                     <Switch>
                         <Route path="/admin" render={(props) => (
-                            !auth.isAuthenticated() || !auth.userHasScopes(['write: messages']) ? (
-                                <Redirect to='/' />
+                            !auth.isAuthenticated() || !auth.userRoleEquals('admin') ? (
+                                <Redirect to='/'/>
                             ) : (
                                 <AdminPage auth={auth} {...props} />
                             )
@@ -31,7 +31,13 @@ class App extends Component {
                             handleAuthentication(props);
                             return <Callback {...props} />
                         }}/>
-                        <Route path="/" render={(props) => <UserPage auth={auth} {...props} />}/>
+                        <Route path="/" render={(props) => (
+                            auth.userRoleEquals('admin') ? (
+                                <Redirect to='/admin'/>
+                            ) : (
+                                <UserPage auth={auth} {...props} />
+                            )
+                        )}/>
                     </Switch>
                 </Router>
             </div>

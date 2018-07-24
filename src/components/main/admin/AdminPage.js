@@ -9,7 +9,7 @@ class UserPage extends Component {
     render() {
         return(
             <div className='AdminPage'>
-                <NavBar />
+                <NavBar auth={this.props.auth} />
                 <div className='container'>
                     <Switch>
                         <Route exact path="/admin" component={Meetups} />

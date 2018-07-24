@@ -1,13 +1,15 @@
-nav img {
-    width: 70%;
-    right: 50%;
+.admin-nav .navbar-brand {
+    width: 200px;
+    margin-right: 5%;
 }
-nav a {
+.admin-nav nav a {
     text-decoration: none;
     outline: none;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
 }
-nav {
+.admin-nav nav {
     border-bottom: 1px solid #e7e7e7;
+}
+.admin-nav .navbar-nav li {
+    margin: 0 15px 0 15px;
 }
