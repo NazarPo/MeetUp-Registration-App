@@ -106,7 +106,7 @@ class Profile extends Component {
                                     </div>
                                     <hr/>
                                     <div>
-                                        <i className="material-icons">web</i>
+                                        <i className="fa fa-group" aria-hidden="true"></i>
                                         <h5><a href="https://www.facebook.com/">{this.state.user.social}</a></h5>
                                     </div>
                                     <hr/>

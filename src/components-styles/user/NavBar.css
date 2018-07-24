@@ -1,16 +1,29 @@
-nav img {
-    width: 70%;
-    right: 50%;
-}
-nav a {
+.home-nav nav a {
     text-decoration: none;
     outline: none;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
 }
-nav {
+
+.home-nav nav {
     border-bottom: 1px solid #e7e7e7;
 }
-.nav-link {
-    margin-right: 40px;
+
+.home-nav .rounded-circle {
+    width: 50px;
+    height: 50px;
+}
+
+.home-nav .user-profile-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.home-nav .navbar-brand {
+    width: 200px;
+    margin-right: 5%;
+}
+
+.home-nav .navbar-nav li{
+    margin: 0 15px 0 15px;
 }

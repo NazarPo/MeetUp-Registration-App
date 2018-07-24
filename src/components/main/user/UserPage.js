@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Route, Redirect} from 'react-router-dom';
 import '../../../components-styles/user/UserPage.css';
 import NavBar from './atoms/NavBar';
 import Meetups from "./Meetups";
@@ -12,35 +12,25 @@ class UserPage extends Component {
         super(props);
     }
 
-    componentWillMount() {
-        this.setState({ profile: {} });
-        const { userProfile, getProfile } = this.props.auth;
-
-        if (!userProfile) {
-            getProfile((err, profile) => {
-                this.setState({ profile });
-            });
-        } else {
-            this.setState({ profile: userProfile });
-        }
-    }
-
-    logout = () => {
-        this.props.auth.logout();
-    };
-
     render() {
-        console.log(this.state.profile);
-        return(
+        const {auth} = this.props;
+        return (
             <div className='UserPage'>
-                <NavBar logout={this.logout} profile={this.state.profile} />
+                <NavBar
+                    auth={auth}
+                    history={this.props.history}
+                />
                 <div className='container'>
-                    <Switch>
-                        <Route exact path="/home" component={MeetUp} />
-                        <Route path="/home/meetups" component={Meetups} />
-                        <Route path="/home/active-meetup" component={News} />
-                        <Route path="/home/user-profile" component={Profile} />
-                    </Switch>
+                    <Route exact path="/" component={MeetUp}/>
+                    <Route path="/meetups" component={Meetups}/>
+                    <Route path="/active-meetup" render={(props) => <News auth={auth} {...props} />}/>
+                    <Route path="/user-profile" render={(props) => (
+                        !auth.isAuthenticated() ? (
+                            <Redirect to="/" />
+                        ) : (
+                            <Profile auth={auth} {...props} />
+                        )
+                    )}/>
                 </div>
             </div>
         );

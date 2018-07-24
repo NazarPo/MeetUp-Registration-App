@@ -20,12 +20,19 @@ class News extends Component {
     }
 
     registerBtnClickHandler = () => {
-        console.log('Click');
-        //TODO: Implementation is here
+        if(this.props.auth.isAuthenticated())
+            console.log('Click');
+        else
+            this.login();
+    };
+
+    login = () => {
+        this.props.auth.login();
     };
 
     render() {
         let _this = this;
+        const { isAuthenticated } = this.props.auth;
         return(
             <div className="row justify-content-center">
                 {
@@ -33,8 +40,7 @@ class News extends Component {
                         if(meetup.isActive)
                             return <Card
                                 key={meetup._id}
-                                meetup={meetup}
-                                isActive={meetup.isActive}
+                                meetup={meetup}isActive={meetup.isActive}
                                 onClick={_this.registerBtnClickHandler}
                             />
                     })
