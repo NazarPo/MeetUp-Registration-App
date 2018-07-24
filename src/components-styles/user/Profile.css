@@ -63,3 +63,7 @@ a {
 #profile h3 {
     font-size: 25px;
 }
+
+.text-center img {
+    width: 55%;
+}

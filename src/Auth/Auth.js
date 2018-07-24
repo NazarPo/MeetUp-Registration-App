@@ -9,7 +9,7 @@ export default class Auth {
         redirectUri: 'http://localhost:3000/callback',
         audience: 'https://internship-nazarpo.eu.auth0.com/userinfo',
         responseType: 'token id_token',
-        scope: 'openid profile'
+        scope: 'openid profile email'
     });
 
     userProfile;

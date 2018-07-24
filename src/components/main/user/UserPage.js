@@ -5,7 +5,7 @@ import NavBar from './atoms/NavBar';
 import Meetups from "./Meetups";
 import MeetUp from './MeetUp';
 import News from './News';
-import Profile from './Profile';
+import ViewProfile from './ViewProfile';
 
 class UserPage extends Component {
     constructor(props) {
@@ -21,14 +21,14 @@ class UserPage extends Component {
                     history={this.props.history}
                 />
                 <div className='container'>
-                    <Route exact path="/" component={MeetUp}/>
-                    <Route path="/meetups" component={Meetups}/>
-                    <Route path="/active-meetup" render={(props) => <News auth={auth} {...props} />}/>
+                    <Route exact path="/" component={MeetUp} />
+                    <Route path="/meetups" component={Meetups} />
+                    <Route path="/active-meetup" render={(props) => <News auth={auth} {...props} />} />
                     <Route path="/user-profile" render={(props) => (
                         !auth.isAuthenticated() ? (
                             <Redirect to="/" />
                         ) : (
-                            <Profile auth={auth} {...props} />
+                            <ViewProfile auth={auth} {...props} />
                         )
                     )}/>
                 </div>

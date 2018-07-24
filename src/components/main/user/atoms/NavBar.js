@@ -11,10 +11,6 @@ class NavBar extends Component {
         this.props.auth.login();
     };
 
-    goTo(route) {
-        this.props.history.replace(`/${route}`)
-    }
-
     componentWillMount() {
         if (this.props.auth.isAuthenticated()) {
             this.setState({profile: {}});
@@ -71,11 +67,8 @@ class NavBar extends Component {
                                                 {this.state.profile.nickname}
                                             </a>
                                             <div className="dropdown-menu" aria-labelledby="navDropDownLink">
-                                                <a className="dropdown-item" href="#"
-                                                   onClick={this.goTo.bind(this, '/user-profile')}>
-                                                    Профіль
-                                                </a>
-                                                <a className="dropdown-item" href="#">Редагувати профіль</a>
+                                                <Link className="dropdown-item" to="/user-profile">Профіль</Link>
+                                                <Link className="dropdown-item" to="/user-profile">Редагувати профіль</Link>
                                                 <div className="dropdown-divider"/>
                                                 <a className="dropdown-item" href="#" onClick={this.logout}>Logout</a>
                                             </div>
