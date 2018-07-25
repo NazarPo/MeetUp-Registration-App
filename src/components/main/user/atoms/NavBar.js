@@ -67,10 +67,10 @@ class NavBar extends Component {
                                                 {this.state.profile.nickname}
                                             </a>
                                             <div className="dropdown-menu" aria-labelledby="navDropDownLink">
-                                                <Link className="dropdown-item" to="/user-profile">Профіль</Link>
-                                                <Link className="dropdown-item" to="/user-profile">Редагувати профіль</Link>
+                                                <Link className="dropdown-item" to="/view-profile">Профіль</Link>
+                                                <Link className="dropdown-item" to="/edit-profile">Редагувати профіль</Link>
                                                 <div className="dropdown-divider"/>
-                                                <a className="dropdown-item" href="#" onClick={this.logout}>Logout</a>
+                                                <a className="dropdown-item" href="#" onClick={this.logout}>Вийти</a>
                                             </div>
                                         </li>
                                     </ul>
