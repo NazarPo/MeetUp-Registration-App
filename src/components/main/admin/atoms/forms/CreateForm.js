@@ -1,27 +1,9 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import '../../../../../components-styles/admin/EditModal.css';
-import Modal from 'react-modal';
-//atoms
 import DateInput from '../inputs/DateInput';
 
-Modal.setAppElement('#root');
-
-const customStyles = {
-    overlay: {
-        backgroundColor       : 'rgba(20, 141, 161, 0.75)'
-    },
-    content : {
-        top                   : '50%',
-        left                  : '50%',
-        right                 : '40%',
-        bottom                : 'auto',
-        marginRight           : '-20%',
-        transform             : 'translate(-50%, -50%)',
-        border                : '1px solid 138496'
-    }
-};
-
-class CreateModal extends Component {
+class CreateForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,7 +15,8 @@ class CreateModal extends Component {
                 dates: [],
                 startTime: ""
             },
-            inputs: []
+            inputs: [],
+            isRedirected: false
         }
     }
 
@@ -44,7 +27,7 @@ class CreateModal extends Component {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state.newMeetup)
         })
-            .then(this.props.onRequestClose)
+            .then(this.setState({ isRedirected: true }))
     };
 
     inputEventHandler = (e) => {
@@ -136,32 +119,47 @@ class CreateModal extends Component {
     };
 
     render() {
+        if(this.state.isRedirected)
+            return <Redirect  to="/admin" />
         return (
-            <Modal
-                isOpen={this.props.isOpen}
-                onRequestClose={this.props.onRequestClose}
-                style={customStyles}
-                contentLabel="Create Modal"
-            >
+            <div>
                 <div className="modal-header">
                     <h4>Створення нового Meetup</h4>
-                    <button type="button" className="close" onClick={this.props.onRequestClose} aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
                 <div className="container">
                     <form  onSubmit={this.createFormSubmitHandler}>
                         <div className="form-group">
                             <label htmlFor="meetup-title">Тема:</label>
-                            <input type="text" className="form-control" id="meetup-title" onBlur={this.onTitleInputBlur} />
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="meetup-title"
+                                name="title"
+                                onBlur={this.onTitleInputBlur}
+                                required
+                            />
                         </div>
                         <div className="form-group">
                             <label htmlFor="meetup-image">Малюнок:</label>
-                            <input type="text" className="form-control" id="meetup-image" onBlur={this.onImageInputBlur} />
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="meetup-image"
+                                name="image"
+                                onBlur={this.onImageInputBlur}
+                                required
+                            />
                         </div>
                         <div className="form-group">
                             <label htmlFor="meetup-description">Опис:</label>
-                            <textarea className="form-control" id="meetup-description" rows="3" onBlur={this.onDescriptionInputBlur} />
+                            <textarea
+                                className="form-control"
+                                name="description"
+                                id="meetup-description"
+                                rows="3"
+                                onBlur={this.onDescriptionInputBlur}
+                                required
+                            />
                         </div>
 
                         <div className="form-group" id="date-adding">
@@ -194,24 +192,33 @@ class CreateModal extends Component {
                                 <label htmlFor="example-time-input">Початок Meetup'у о:</label>
                                 <input className="form-control"
                                        type="time"
+                                       name="startTime"
                                        id="example-time-input"
                                        onBlur={this.onTimeInputBlurHandler}
+                                       required
                                 />
                             </div>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="meetup-link">Посилання на сторінку блогу:</label>
-                            <input type="text" className="form-control" id="meetup-link" onBlur={this.onBlogLinkInputBlur} />
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="meetup-link"
+                                name="blogLink"
+                                onBlur={this.onBlogLinkInputBlur}
+                                required
+                            />
                         </div>
                         <div className="create-meetup">
                             <button type="submit" className="btn btn-success">Створити</button>
                         </div>
                     </form>
                 </div>
-            </Modal>
+            </div>
         )
     }
 };
 
-export default CreateModal;
+export default CreateForm;

@@ -32,6 +32,7 @@ const Card = (props) => {
                 {
                     meetup.isActive && (
                         <button
+                            id={props.id}
                             type="button"
                             className="btn btn-success"
                             onClick={props.onClick}

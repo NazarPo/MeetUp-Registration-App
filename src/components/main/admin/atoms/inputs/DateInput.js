@@ -8,6 +8,7 @@ const DateInput = (props) => {
             className="form-control meetup-date"
             value={props.value}
             onChange={props.onChange}
+            required
         />
     );
 };

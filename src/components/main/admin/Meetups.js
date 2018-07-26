@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Table from './atoms/Table';
 import '../../../components-styles/admin/Meetups.css';
-import CreateModal from './atoms/modals/CreateModal';
 
 class Meetups extends Component {
     constructor(props) {
         super(props);
         this.state = {
             meetupsList: [],
-            modalIsOpen: false
+            isRedirectedToCreating: false
         }
     }
-
     componentDidMount() {
         fetch('http://localhost:4000/meetups')
             .then(res => res.json())
@@ -20,34 +19,26 @@ class Meetups extends Component {
             }))
     }
 
-    componentWillUpdate() {
-        this.componentDidMount();
-    }
-
-    openEditModal = () => {
-        this.setState({ modalIsOpen: true })
-    };
-
-    closeEditModal = () => {
-        this.setState({ modalIsOpen: false })
+    onAddNewMeetupClickHandler = () => {
+        this.setState({
+            isRedirectedToCreating: true
+        })
     };
 
     render() {
+        if(this.state.isRedirectedToCreating)
+            return <Redirect to='/admin/create-meetup' />
         return (
             <div className="container meetups">
-                <h2>Список усіх Meetup's</h2>
+                <h4>Список усіх Meetup's</h4>
                 <div>
                     <button
                         type="button"
                         className="btn btn-info"
-                        onClick={this.openEditModal}
+                        onClick={this.onAddNewMeetupClickHandler}
                     >Додати новий Meetup</button>
                 </div>
-                <Table meetUpsList={this.state.meetupsList} />
-                <CreateModal
-                    isOpen={this.state.modalIsOpen}
-                    onRequestClose={this.closeEditModal}
-                />
+                <Table meetupsList={this.state.meetupsList} />
             </div>
         );
     }

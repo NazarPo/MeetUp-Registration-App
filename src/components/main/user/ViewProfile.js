@@ -24,7 +24,7 @@ class ViewProfile extends Component {
     }
 
     getUserFromDB = (profile) => {
-        fetch(`http://localhost:4000/users/${profile.sub}`)
+        fetch(`http://localhost:4000/users/authId/${profile.sub}`)
             .then(res => res.json())
             .then(res => this.setState({
                 user: res

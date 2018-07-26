@@ -26,7 +26,7 @@ class Statistic extends Component {
 
     getCountOfMeetupGuests = (meetups) => {
         return meetups.map((item) => {
-            return item.guests.length;
+            return item.users.length;
         })
     };
 
@@ -61,7 +61,7 @@ class Statistic extends Component {
                 categories: this.getTitlesOfAll(this.state.meetups)
             },
             series: [{
-                data: [35, 25, 41]
+                data: this.getCountOfMeetupGuests(this.state.meetups)
             }]
         };
         return(

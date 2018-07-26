@@ -1,0 +1,8 @@
+.meetup-users-container h4 {
+    text-align: center;
+    margin: 4% 0 3% 0;
+}
+.meetup-users-container img {
+    width: 35%;
+    border-radius: 50%;
+}

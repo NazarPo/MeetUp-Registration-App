@@ -1,27 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import { Redirect } from 'react-router-dom';
 import '../../../../../components-styles/admin/EditModal.css';
-import Modal from 'react-modal';
-//atoms
 import DateInput from '../inputs/DateInput';
 
-Modal.setAppElement('#root');
-
-const customStyles = {
-    overlay: {
-        backgroundColor       : 'rgba(255, 186, 18, 0.75)'
-    },
-    content : {
-        top                   : '50%',
-        left                  : '50%',
-        right                 : '40%',
-        bottom                : 'auto',
-        marginRight           : '-20%',
-        transform             : 'translate(-50%, -50%)',
-        border                : '1px solid FFBA08'
-    }
-};
-
-class EditModal extends Component {
+class EditForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,26 +14,27 @@ class EditModal extends Component {
                 blogLink: "",
                 dates: [],
                 startTime: ""
-            }
+            },
+            isRedirectedToMeetup: false
         }
     }
 
-    componentDidMount() {
-        fetch(`http://localhost:4000/meetups/${this.props.id}`)
+    componentWillMount() {
+        fetch(`http://localhost:4000/meetups/${this.props.match.params.id}`)
             .then(res => res.json())
-                .then(res => this.setState({
+            .then(res => this.setState({
                 meetup: res
             }))
     }
 
     editFormSubmitHandler = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:4000/meetups/${this.props.id}`, {
+        fetch(`http://localhost:4000/meetups/${this.props.match.params.id}`, {
             method: "PATCH",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state.meetup)
         })
-            .then(this.props.onRequestClose)
+            .then(this.setState({ isRedirectedToMeetup: true }))
 
     };
 
@@ -92,14 +75,14 @@ class EditModal extends Component {
     onChangeDateHandler = (e) => {
         let temp = this.state.meetup;
         this.addDateToMeetup(this.createNewDate(e), temp.dates);
-        this.setState({ meetup: temp });
+        this.setState({meetup: temp});
         this.setActiveField();
     };
 
     setActiveField = () => {
         let temp = this.state.meetup;
         temp.isActive = this.calculateMeetupActivity();
-        this.setState({meetup: temp });
+        this.setState({meetup: temp});
     };
 
     addDateToMeetup = (date, dates) => {
@@ -111,7 +94,7 @@ class EditModal extends Component {
                 index = dates.indexOf(item)
             }
         });
-        if(exists)
+        if (exists)
             dates[index] = date;
     };
 
@@ -127,7 +110,7 @@ class EditModal extends Component {
         let temp = this.state.meetup;
         temp.dates.forEach((item) => {
             let date = new Date(item.date);
-            if(new Date().getTime() > date.getTime())
+            if (new Date().getTime() > date.getTime())
                 isActive = false;
         });
         return isActive;
@@ -135,18 +118,15 @@ class EditModal extends Component {
 
     render() {
         let meetup = this.state.meetup;
+        console.log(meetup);
+        if(this.state.isRedirectedToMeetup) {
+            const url = `/admin/meetup/${this.state.meetup._id}`;
+            return <Redirect to={url}/>
+        }
         return (
-            <Modal
-                isOpen={this.props.isOpen}
-                onRequestClose={this.props.onRequestClose}
-                style={customStyles}
-                contentLabel="Edit Modal"
-            >
+            <div>
                 <div className="modal-header">
                     <h4>Редагування Meetup'у</h4>
-                    <button type="button" className="close" onClick={this.props.onRequestClose} aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
                 <div className="container">
                     <form onSubmit={this.editFormSubmitHandler}>
@@ -158,6 +138,7 @@ class EditModal extends Component {
                                    id="meetup-title"
                                    name="title"
                                    onChange={this.handleChange}
+                                   required
                             />
                         </div>
                         <div className="form-group">
@@ -168,6 +149,7 @@ class EditModal extends Component {
                                    id="meetup-image"
                                    name="image"
                                    onChange={this.handleChange}
+                                   required
                             />
                         </div>
                         <div className="form-group">
@@ -178,6 +160,7 @@ class EditModal extends Component {
                                       rows="3"
                                       name="description"
                                       onChange={this.handleChange}
+                                      required
                             />
                         </div>
 
@@ -185,24 +168,24 @@ class EditModal extends Component {
                             <div className="inputs-header">
                                 <label htmlFor="meetup-date">Дата проведення:</label>
                                 <div className="inputs-control">
-                                    <i className="fa fa-plus-square" onClick={this.addDateInput} />
-                                    <i className="fa fa-minus-square" onClick={this.removeDateInput} />
+                                    <i className="fa fa-plus-square" onClick={this.addDateInput}/>
+                                    <i className="fa fa-minus-square" onClick={this.removeDateInput}/>
                                 </div>
                             </div>
                             <div className="inputs-body">
-                            {
-                                this.state.meetup.dates.map((item, index) => {
-                                    return (
-                                        <div>
-                                            <DateInput id={index}
-                                                       key={index}
-                                                       value={item.date}
-                                                       onChange={this.onChangeDateHandler}
-                                            />
-                                        </div>
-                                    );
-                                })
-                            }
+                                {
+                                    this.state.meetup.dates.map((item, index) => {
+                                        return (
+                                            <div>
+                                                <DateInput id={index}
+                                                           key={index}
+                                                           value={item.date}
+                                                           onChange={this.onChangeDateHandler}
+                                                />
+                                            </div>
+                                        );
+                                    })
+                                }
                             </div>
                         </div>
 
@@ -215,6 +198,7 @@ class EditModal extends Component {
                                        id="example-time-input"
                                        name="startTime"
                                        onChange={this.handleChange}
+                                       required
                                 />
                             </div>
                         </div>
@@ -227,6 +211,7 @@ class EditModal extends Component {
                                    id="meetup-link"
                                    name="blogLink"
                                    onChange={this.handleChange}
+                                   required
                             />
                         </div>
                         <div className="create-meetup">
@@ -234,9 +219,9 @@ class EditModal extends Component {
                         </div>
                     </form>
                 </div>
-            </Modal>
+            </div>
         )
     }
 };
 
-export default EditModal;
+export default EditForm;

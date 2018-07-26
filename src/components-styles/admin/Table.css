@@ -1,3 +1,18 @@
 .table .table-success, .table-danger {
     cursor: pointer;
 }
+
+.active-meetup {
+    width: 2vh;
+    height: 2vh;
+    background-color: green;
+    border-radius: 50%;
+}
+
+.not-active-meetup {
+    width: 2vh;
+    height: 2vh;
+    background-color: red;
+    border-radius: 50%;
+
+}

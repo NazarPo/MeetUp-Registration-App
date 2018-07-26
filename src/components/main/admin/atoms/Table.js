@@ -19,6 +19,12 @@ class Table extends Component {
         })
     };
 
+    sortingMeetupsList = (meetupsList) => {
+        return meetupsList.sort((a, b) => {
+            return new Date(b.dates[0].date) - new Date(a.dates[0].date);
+        })
+    };
+
     render() {
         if(this.state.isRowClicked){
             let link = `/admin/meetup/${this.state.clickedRowId}`;
@@ -32,11 +38,12 @@ class Table extends Component {
                         <th scope="col">Назва</th>
                         <th scope="col">Дата</th>
                         <th scope="col">Час початку</th>
+                        <th scope="col">Активність</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        [].map.call(this.props.meetUpsList, (meetUp, index) => {
+                        [].map.call(this.sortingMeetupsList(this.props.meetupsList), (meetUp, index) => {
                             return (
                                 <TableRow
                                     key={meetUp._id}

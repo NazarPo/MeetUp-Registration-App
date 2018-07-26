@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import '../../../components-styles/admin/MeetupInfo.css';
-import EditModal from './atoms/modals/EditModal';
 
 class MeetupInfo extends Component {
     constructor(props) {
@@ -9,21 +8,17 @@ class MeetupInfo extends Component {
         this.state = {
             meetup: {},
             isRedirected: false,
-            modalIsOpen: false
+            isRedirectedToUsers: false
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const {id} = this.props.match.params;
         fetch(`http://localhost:4000/meetups/${id}`)
             .then(res => res.json())
             .then(res => this.setState({
                 meetup: res
-            }))
-    }
-
-    componentWillUpdate() {
-        this.componentDidMount();
+            }));
     }
 
     onDeleteBtnClickHandler = () => {
@@ -34,26 +29,37 @@ class MeetupInfo extends Component {
             .then(this.setState({isRedirected: true}))
     };
 
-    openEditModal = () => {
-        this.setState({ modalIsOpen: true })
+    onEditBtnClickHandler = () => {
+        this.setState({
+            isRedirectedToEdit: true
+        })
     };
 
-    closeEditModal = () => {
-        this.setState({ modalIsOpen: false })
-    };
 
     createDatesArray = (dates) => {
         let onlyDates = [];
-        if(typeof dates !== 'undefined')
+        if (typeof dates !== 'undefined')
             dates.forEach((item) => {
                 onlyDates.push(new Date(item.date).toDateString());
             });
         return onlyDates;
     };
 
+    onOpenUsersPageClickHandler = () => {
+        this.setState({ isRedirectedToUsers: true })
+    };
+
     render() {
         if (this.state.isRedirected)
-            return <Redirect to="/admin"/>;
+            return <Redirect to="/admin" />
+        if(this.state.isRedirectedToUsers) {
+            const url = `/admin/meetup/${this.state.meetup._id}/users`;
+            return <Redirect to={url} />
+        }
+        if(this.state.isRedirectedToEdit) {
+            const url = `/admin/edit-meetup/${this.state.meetup._id}`;
+            return <Redirect to={url}/>
+        }
         return (
             <div>
                 <div className="card admin-card">
@@ -63,7 +69,8 @@ class MeetupInfo extends Component {
                     <div className="card-body">
                         <h3 className="card-title">{this.state.meetup.title}</h3>
                         <p className="card-text">{this.state.meetup.description}</p>
-                        <h6 className="card-title"><b>Дата проведення: </b>{this.createDatesArray(this.state.meetup.dates).join(', ')}</h6>
+                        <h6 className="card-title"><b>Дата
+                            проведення: </b>{this.createDatesArray(this.state.meetup.dates).join(', ')}</h6>
                         <h6><b>Час початку: </b>{this.state.meetup.startTime}</h6>
                         <h6><b>Адреса: </b>м.Черкаси, вул.Грушевського 19/3</h6>
                         <div>
@@ -74,17 +81,17 @@ class MeetupInfo extends Component {
                             </button>
                             <button type="button"
                                     className="btn btn-warning"
-                                    onClick={this.openEditModal}
+                                    onClick={this.onEditBtnClickHandler}
                             >Редагувати
+                            </button>
+                            <button type="button"
+                                    className="btn btn-light"
+                                    onClick={this.onOpenUsersPageClickHandler}
+                            >Переглянути реєстрації
                             </button>
                         </div>
                     </div>
                 </div>
-                <EditModal
-                    isOpen={this.state.modalIsOpen}
-                    onRequestClose={this.closeEditModal}
-                    id={this.props.match.params.id}
-                />
             </div>
         );
     }

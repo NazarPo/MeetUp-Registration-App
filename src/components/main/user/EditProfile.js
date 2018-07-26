@@ -25,7 +25,7 @@ class EditProfile extends Component {
     }
 
     getUserFromDB = (profile) => {
-        fetch(`http://localhost:4000/users/${profile.sub}`)
+        fetch(`http://localhost:4000/users/authId/${profile.sub}`)
             .then(res => res.json())
             .then(res => this.setState({
                 isProfileExist: res !== null,
@@ -48,7 +48,7 @@ class EditProfile extends Component {
     };
 
     patchUserInDB = () => {
-        fetch(`http://localhost:4000/users/${this.state.user.authId}`, {
+        fetch(`http://localhost:4000/users/authId/${this.state.user.authId}`, {
             method: "PATCH",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state.user)
@@ -117,7 +117,10 @@ class EditProfile extends Component {
                             <input className="form-control"
                                    name="name"
                                    value={this.state.user ? this.state.user.name : ''}
-                                   onChange={this.handleTextInputChange} type="text"/>
+                                   onChange={this.handleTextInputChange}
+                                   type="text"
+                                   required
+                            />
                         </div>
                     </div>
                     <div className="form-group row">
@@ -127,7 +130,10 @@ class EditProfile extends Component {
                             <input className="form-control"
                                    name="secondName"
                                    value={this.state.user ? this.state.user.secondName : ''}
-                                   onChange={this.handleTextInputChange} type="text"/>
+                                   onChange={this.handleTextInputChange}
+                                   type="text"
+                                   required
+                            />
                         </div>
                     </div>
                     <div className="form-group row">
@@ -137,7 +143,10 @@ class EditProfile extends Component {
                             <input className="form-control"
                                    name="phone"
                                    value={this.state.user ? this.state.user.phone : ''}
-                                   onChange={this.handleTextInputChange} type="text"/>
+                                   onChange={this.handleTextInputChange}
+                                   type="text"
+                                   required
+                            />
                         </div>
                     </div>
                     <div className="form-group row">
@@ -149,7 +158,9 @@ class EditProfile extends Component {
                                    name="social"
                                    value={this.state.user ? this.state.user.social : ''}
                                    onChange={this.handleTextInputChange}
-                                   type="url"/>
+                                   type="url"
+                                   required
+                            />
                         </div>
                     </div>
 
@@ -161,7 +172,9 @@ class EditProfile extends Component {
                                    name="birth"
                                    value={this.state.user ? this.dateFormatter(this.state.user.birth) : ''}
                                    onChange={this.handleTextInputChange}
-                                   type="date"/>
+                                   type="date"
+                                   required
+                            />
                         </div>
                     </div>
 
@@ -176,7 +189,9 @@ class EditProfile extends Component {
                                        value="Черкаський Національний університет ім.Б. Хмельницького"
                                        checked={this.state.user ? this.state.user.university === "Черкаський Національний університет ім.Б. Хмельницького" : ''}
                                        onChange={this.universityRadioButtonsHandleChange}
-                                       name="universities"/>
+                                       name="universities"
+                                       required
+                                />
                                 <label htmlFor="1">Черкаський Національний університет ім.Б. Хмельницького</label>
                             </div>
                             <div>
@@ -221,7 +236,9 @@ class EditProfile extends Component {
                                    name="faculty"
                                    value={this.state.user ? this.state.user.faculty : ''}
                                    onChange={this.handleTextInputChange}
-                                   type="text"/>
+                                   type="text"
+                                   required
+                            />
                         </div>
                     </div>
 
@@ -232,7 +249,9 @@ class EditProfile extends Component {
                                    name="course"
                                    value={this.state.user ? this.state.user.course : ''}
                                    onChange={this.handleTextInputChange}
-                                   type="text"/>
+                                   type="text"
+                                   required
+                            />
                         </div>
                     </div>
 
@@ -245,7 +264,9 @@ class EditProfile extends Component {
                                        value="yes"
                                        checked={this.state.user ? this.state.user.hasLaptop : ''}
                                        onChange={this.yesNoRadioButtonsHandleChange}
-                                       name="choice"/>
+                                       name="choice"
+                                       required
+                                />
                                 <label htmlFor="notebook-true">Так</label>
                             </div>
                             <div>

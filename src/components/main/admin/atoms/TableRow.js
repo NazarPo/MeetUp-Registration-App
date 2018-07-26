@@ -12,13 +12,19 @@ const TableRow = (props) => {
     return (
         <tr
             id={props.key}
-            className={props.item.isActive ? 'table-success' : 'table-danger'}
             onClick={props.onClick}
         >
             <th scope="row">{props.index + 1}</th>
             <td>{props.item.title}</td>
             <td>{createDatesArray(props.item.dates).join(', ')}</td>
             <td>{props.item.startTime}</td>
+            <td align="center">
+                {
+                    props.item.isActive ?
+                        <div className='active-meetup'>&nbsp;</div> :
+                        <div className='not-active-meetup'>&nbsp;</div>
+                }
+            </td>
         </tr>
     )
 };
