@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Card from './atoms/Card';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
@@ -49,19 +49,19 @@ class News extends Component {
     };
 
     registerBtnClickHandler = (e) => {
-        if(this.props.auth.isAuthenticated()) {
-           const meetupId = e.target.id;
-           fetch(`http://localhost:4000/meetups/${meetupId}/users`, {
-               method: 'POST',
-               headers: {'Content-Type': 'application/json'},
-               body: JSON.stringify(this.state.user)
-           })
-               .then(res => {
-                   if(res.status === 403)
-                      NotificationManager.error('Ви вже зареєстровані на цей Meetup. :)', 'Помилка!', 5000);
-                   if(res.status === 200)
-                       NotificationManager.success('Ви успішно зареєструвалися :)', 'Круто!', 5000);
-               })
+        if (this.props.auth.isAuthenticated()) {
+            const meetupId = e.target.id;
+            fetch(`http://localhost:4000/meetups/${meetupId}/users`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(this.state.user)
+            })
+                .then(res => {
+                    if (res.status === 403)
+                        NotificationManager.error('Ви вже зареєстровані на цей Meetup. :)', 'Помилка!', 5000);
+                    if (res.status === 200)
+                        NotificationManager.success('Ви успішно зареєструвалися :)', 'Круто!', 5000);
+                })
         }
         else
             this.login();
@@ -73,11 +73,11 @@ class News extends Component {
 
     render() {
         let _this = this;
-        return(
+        return (
             <div className="row justify-content-center">
                 {
                     [].map.call(this.state.meetupList, function (meetup) {
-                        if(meetup.isActive)
+                        if (meetup.isActive)
                             return <Card
                                 key={meetup._id}
                                 id={meetup._id}
@@ -86,7 +86,7 @@ class News extends Component {
                             />
                     })
                 }
-                <NotificationContainer />
+                <NotificationContainer/>
             </div>
         );
     }

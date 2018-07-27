@@ -29,13 +29,6 @@ class MeetupInfo extends Component {
             .then(this.setState({isRedirected: true}))
     };
 
-    onEditBtnClickHandler = () => {
-        this.setState({
-            isRedirectedToEdit: true
-        })
-    };
-
-
     createDatesArray = (dates) => {
         let onlyDates = [];
         if (typeof dates !== 'undefined')
@@ -47,6 +40,10 @@ class MeetupInfo extends Component {
 
     onOpenUsersPageClickHandler = () => {
         this.setState({ isRedirectedToUsers: true })
+    };
+
+    onEditBtnClickHandler = () => {
+        this.setState({isRedirectedToEdit: true})
     };
 
     render() {

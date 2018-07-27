@@ -5,7 +5,7 @@ class Meetups extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            meetupList: []
+            meetupsList: []
         };
     }
     componentWillMount() {
@@ -13,7 +13,7 @@ class Meetups extends Component {
             .then(res => res.json())
             .then(res => {
                 this.setState({
-                    meetupList: res
+                    meetupsList: res
                 })
             })
     }
@@ -22,7 +22,7 @@ class Meetups extends Component {
         return(
             <div className="row justify-content-center">
                 {
-                    this.state.meetupList.map((meetup) => {
+                    this.state.meetupsList.map((meetup) => {
                         if(!meetup.isActive)
                             return <Card
                                 key={meetup._id}
