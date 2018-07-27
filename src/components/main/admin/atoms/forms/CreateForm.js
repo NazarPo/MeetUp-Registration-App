@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import '../../../../../components-styles/admin/EditModal.css';
+import '../../../../../components-styles/admin/MeetupForm.css';
 import DateInput from '../inputs/DateInput';
 
 class CreateForm extends Component {
@@ -122,7 +122,7 @@ class CreateForm extends Component {
         if(this.state.isRedirected)
             return <Redirect  to="/admin" />
         return (
-            <div>
+            <div className='meetup-form'>
                 <div className="modal-header">
                     <h4>Створення нового Meetup</h4>
                 </div>
@@ -211,7 +211,7 @@ class CreateForm extends Component {
                                 required
                             />
                         </div>
-                        <div className="create-meetup">
+                        <div className="submit-button">
                             <button type="submit" className="btn btn-success">Створити</button>
                         </div>
                     </form>

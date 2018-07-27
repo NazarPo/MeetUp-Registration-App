@@ -1,0 +1,41 @@
+.meetup-form {
+    display: flex;
+    flex-direction: column;
+    width: 60vh;
+    margin: 0 auto;
+    margin-top: 2%;
+}
+
+.meetup-form .submit-button {
+    text-align: center;
+    margin: 7% 0 4% 0;
+}
+
+
+.meetup-form #date-adding div {
+    display: flex;
+    margin-bottom: 3%;
+}
+
+.meetup-form #date-adding div i {
+    cursor: pointer;
+    font-size: 23px;
+}
+
+.meetup-form .inputs-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 15%;
+}
+
+.meetup-form .inputs-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.meetup-form .inputs-header {
+    justify-content: space-between;
+}

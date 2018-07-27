@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom';
-import '../../../../../components-styles/admin/EditModal.css';
+import '../../../../../components-styles/admin/MeetupForm.css';
 import DateInput from '../inputs/DateInput';
 
 class EditForm extends Component {
@@ -124,7 +124,7 @@ class EditForm extends Component {
             return <Redirect to={url}/>
         }
         return (
-            <div>
+            <div className='meetup-form'>
                 <div className="modal-header">
                     <h4>Редагування Meetup'у</h4>
                 </div>
@@ -157,7 +157,7 @@ class EditForm extends Component {
                             <textarea className="form-control"
                                       value={meetup.description}
                                       id="meetup-description"
-                                      rows="3"
+                                      rows="7"
                                       name="description"
                                       onChange={this.handleChange}
                                       required
@@ -214,7 +214,7 @@ class EditForm extends Component {
                                    required
                             />
                         </div>
-                        <div className="create-meetup">
+                        <div className="submit-button">
                             <button type="submit" className="btn btn-danger">Редагувати</button>
                         </div>
                     </form>
